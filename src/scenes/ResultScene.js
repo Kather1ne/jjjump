@@ -45,16 +45,22 @@ export default class ResultScene extends Phaser.Scene {
       }).setOrigin(0.5);
     }
 
-    const button = this.add.rectangle(CENTER_X, panel.y + 110, 220, 64, COLORS.character)
+    this.addButton(panel.y + 90, 'Play Again', COLORS.character, () => this.restart());
+    this.addButton(panel.y + 150, 'Menu', COLORS.backgroundAlt, () => this.toMenu(), true);
+  }
+
+  addButton(y, label, color, onClick, outlined = false) {
+    const button = this.add.rectangle(CENTER_X, y, 220, 48, color)
       .setInteractive({ useHandCursor: true });
-    this.add.text(CENTER_X, panel.y + 110, 'Play Again', {
+    if (outlined) button.setStrokeStyle(2, 0xffffff, 0.4);
+    this.add.text(CENTER_X, y, label, {
       fontFamily: 'Arial',
-      fontSize: '24px',
-      color: '#3a2a1a',
+      fontSize: '22px',
+      color: outlined ? COLORS.textLight : '#3a2a1a',
       fontStyle: 'bold',
     }).setOrigin(0.5);
 
-    button.on('pointerdown', () => this.restart());
+    button.on('pointerdown', onClick);
     button.on('pointerover', () => button.setScale(1.05));
     button.on('pointerout', () => button.setScale(1));
   }
@@ -62,5 +68,10 @@ export default class ResultScene extends Phaser.Scene {
   restart() {
     this.scene.get('Game').scene.restart();
     this.scene.stop();
+  }
+
+  toMenu() {
+    this.scene.stop('Game');
+    this.scene.start('Menu');
   }
 }

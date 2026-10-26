@@ -1,36 +1,26 @@
 import {
-  PLATFORM_GAP,
-  PLATFORM_WIDTH,
-  PLATFORM_HEIGHT,
   BASE_PLATFORM_SPEED,
   JUMP_DURATION,
-  CHAR_Y,
+  JUMP_HEIGHT,
+  PLATFORM_HEIGHT,
 } from '../config.js';
 
 const DEFAULTS = {
-  hamsterOffsetY: 36,
+  hamsterOffsetY: 22 + PLATFORM_HEIGHT / 2, // feet on the block's top edge
   hamsterSize: 72,
   hamsterHitboxW: 52,
-  jumpExtra: 36,
+  jumpHeight: JUMP_HEIGHT,
   jumpDuration: JUMP_DURATION,
-  descentPx: 28,
-  platformWidth: PLATFORM_WIDTH,
-  platformHeight: PLATFORM_HEIGHT,
   platformSpeed: BASE_PLATFORM_SPEED,
-  platformGap: PLATFORM_GAP,
 };
 
 const CONTROLS = [
   { key: 'hamsterOffsetY',  label: 'Hamster Y offset',    min: 0,   max: 80,  step: 1 },
   { key: 'hamsterSize',     label: 'Hamster sprite size',  min: 32,  max: 140, step: 2 },
   { key: 'hamsterHitboxW',  label: 'Hamster hitbox W',     min: 20,  max: 100, step: 2 },
-  { key: 'jumpExtra',       label: 'Jump extra (above gap)', min: 0, max: 100, step: 2 },
+  { key: 'jumpHeight',      label: 'Jump height px',       min: 30,  max: 200, step: 2 },
   { key: 'jumpDuration',    label: 'Jump duration ms',     min: 200, max: 1200, step: 10 },
-  { key: 'descentPx',       label: 'Descent px',           min: 0,   max: 100, step: 1 },
-  { key: 'platformWidth',   label: 'Platform width',       min: 60,  max: 250, step: 5 },
-  { key: 'platformHeight',  label: 'Platform height',      min: 10,  max: 60,  step: 2 },
-  { key: 'platformSpeed',   label: 'Platform speed px/s',  min: 20,  max: 300, step: 5 },
-  { key: 'platformGap',     label: 'Platform gap',         min: 60,  max: 300, step: 5 },
+  { key: 'platformSpeed',   label: 'Platform speed px/s',  min: 40,  max: 400, step: 5 },
 ];
 
 export const tuning = { ...DEFAULTS };

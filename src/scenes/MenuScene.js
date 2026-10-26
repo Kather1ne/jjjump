@@ -1,17 +1,9 @@
 import Hamster from '../objects/Hamster.js';
-import hamsterSpriteUrl from '../objects/assets/hamster-pose-set-transparent.png';
-import { WIDTH, HEIGHT, CENTER_X, COLORS, BEST_SCORE_KEY } from '../config.js';
+import { WIDTH, HEIGHT, CENTER_X, COLORS, BEST_SCORE_KEY, SESSIONS_KEY } from '../config.js';
 
 export default class MenuScene extends Phaser.Scene {
   constructor() {
     super('Menu');
-  }
-
-  preload() {
-    this.load.spritesheet('hamster', hamsterSpriteUrl, {
-      frameWidth: 724,
-      frameHeight: 724,
-    });
   }
 
   create() {
@@ -39,6 +31,13 @@ export default class MenuScene extends Phaser.Scene {
       fontFamily: 'Arial',
       fontSize: '20px',
       color: '#c9b896',
+    }).setOrigin(0.5);
+
+    const sessions = Number(localStorage.getItem(SESSIONS_KEY) || 0);
+    this.add.text(CENTER_X, HEIGHT * 0.42 + 98, `Games played: ${sessions}`, {
+      fontFamily: 'Arial',
+      fontSize: '16px',
+      color: '#9c8d72',
     }).setOrigin(0.5);
 
     const button = this.add.rectangle(CENTER_X, HEIGHT * 0.62, 220, 68, COLORS.character)
