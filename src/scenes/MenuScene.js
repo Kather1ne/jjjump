@@ -40,9 +40,9 @@ export default class MenuScene extends Phaser.Scene {
       color: '#9c8d72',
     }).setOrigin(0.5);
 
-    const button = this.add.rectangle(CENTER_X, HEIGHT * 0.62, 220, 68, COLORS.character)
+    const button = this.add.rectangle(CENTER_X, HEIGHT * 0.66, 220, 68, COLORS.character)
       .setInteractive({ useHandCursor: true });
-    this.add.text(CENTER_X, HEIGHT * 0.62, 'Start', {
+    this.add.text(CENTER_X, HEIGHT * 0.66, 'Start', {
       fontFamily: 'Arial',
       fontSize: '26px',
       color: '#3a2a1a',

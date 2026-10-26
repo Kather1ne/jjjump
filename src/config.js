@@ -1,8 +1,16 @@
 export const WIDTH = 400;
-export const HEIGHT = 800;
+
+// Height follows the screen's aspect ratio on phones (e.g. ~870 on a modern iPhone),
+// so the game fills the screen without empty bands. Desktop and tablets keep 800.
+function pickHeight() {
+  const ratio = window.innerHeight / window.innerWidth;
+  if (ratio < 1.6) return 800;
+  return Math.round(Math.min(Math.max(WIDTH * ratio, 680), 960));
+}
+export const HEIGHT = pickHeight();
 
 export const CENTER_X = WIDTH / 2;
-export const CHAR_Y = 560; // fixed screen row where the top of the tower always sits
+export const CHAR_Y = Math.round(HEIGHT * 0.7); // fixed screen row where the top of the tower always sits
 
 export const PLATFORM_WIDTH = 130;
 export const PLATFORM_HEIGHT = 21; // blocks stack directly on top of each other
